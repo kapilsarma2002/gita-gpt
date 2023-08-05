@@ -9,21 +9,19 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  userName  String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  clerkId   String   @unique
-  email     String   @unique
-  isPro     Boolean  @default(false)
-  History   History?
-}
-
-model UserProfile {
-  userId        Int   @unique
-  accuracy      Float
-  dailyStreak   Int
-  longestStreak Int?
+  id            String       @id @default(uuid())
+  userName      String       @unique
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  clerkId       String       @unique
+  email         String       @unique
+  isPro         Boolean      @default(false)
+  accuracy      Float        @default(0.0)
+  completed     Int          @default(0)
+  last          Int          @default(-1)
+  dailyStreak   Int          @default(0)
+  longestStreak Int          @default(0)
+  History       History?
 }
 
 model History {
