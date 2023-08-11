@@ -4,16 +4,14 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getUserByClerkID } from '@/utils/auth'
 import ThemeSwitcher from '@/components/themeSwitcher'
+// import ThemeSwitcher from '@/components/themeSwitcher'
 
 const HomeLayout = async ({ children }: any) => {
 
   const user = await getUserByClerkID()
 
   return (
-    <div
-      className="h-screen w-screen relative bg-white text-black dark:bg-slate-900 dark:text-white/80
-"
-    >
+    <div className="h-screen w-screen relative bg-white text-black dark:bg-slate-900 dark:text-white/80">
       {/* <aside className="absolute h-full w-[200px] pl-4 top-0 left-0 border-r border-black/10">
         <ul>
           {links.map((link) => (
@@ -29,7 +27,7 @@ const HomeLayout = async ({ children }: any) => {
           <div>
             <NavBar />
           </div>
-          <div className="h-full w-[60px] gap-4 px-6 flex items-center justify-end">
+          <div className="h-full w-[100px] gap-4 px-6 flex items-center justify-end">
             <div className="text-xl">
               <Link href={`/profile/${user.userName}`}>{user.userName}</Link>
             </div>
@@ -39,7 +37,6 @@ const HomeLayout = async ({ children }: any) => {
             <UserButton />
           </div>
         </header>
-
         <div className="h-[calc(100vh-60px)]">{children}</div>
       </div>
     </div>

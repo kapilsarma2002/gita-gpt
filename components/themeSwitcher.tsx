@@ -1,69 +1,33 @@
 'use client'
+
+import { useTheme } from 'next-themes'
 import Image from 'next/image'
-
-if (typeof window !== 'undefined') {
-  //Icons
-  const moonIcon = document.querySelector('.moon')
-  const sunIcon = document.querySelector('.sun')
-  //console.log('icons: ', sunIcon, moonIcon)
-
-  // Theme variants
-  const userTheme = localStorage.getItem('theme')
-  const systemTheme = window.matchMedia('(prefers-color:scheme: dark)').matches
-
-  // Icon toggling
-  const iconToggle = () => {
-    moonIcon.classList.toggle('display-none')
-    sunIcon.classList.toggle('display-none')
-  }
-
-  // Initial theme check
-  const themeCheck = () => {
-    if (userTheme === 'dark' || (!userTheme && systemTheme)) {
-      document.documentElement.classList.add('dark')
-      moonIcon.classList.add('display-none')
-    }
-    sunIcon.classList.add('display-none')
-  }
-
-  // Manual theme check
-  const themeSwitch = () => {
-    if (document.documentElement.classList.contains('dark')) {
-      document.documentElement.classList.remove('dark')
-      localStorage.setItem('theme', 'light')
-      iconToggle()
-      return
-    }
-    document.documentElement.classList.add('dark')
-    localStorage.setItem('theme', 'dark')
-    iconToggle()
-  }
-
-  // calling theme switch on clicking buttons
-  sunIcon.addEventListener('click', () => {
-    themeSwitch()
-  })
-  moonIcon.addEventListener('click', () => {
-    themeSwitch()
-  })
-
-  // theme check on initial load
-  themeCheck()
-}
+import {useState, useEffect} from 'react'
 
 const ThemeSwitcher = () => {
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
 
   return (
-    <div className='h-full w-full'>
-      <div className="moon cursor-pointer">
-        <Image src="/moon.png" height={30} width={30} alt="moon" />
-      </div>
-      <div className="sun cursor-pointer">
-        <Image src="/sun.png" height={30} width={30} alt="sun" />
-      </div>
+    <div className="h-[30px] w-[30px] cursor-pointer">
+      {theme === 'light' && (
+        <div onClick={() => setTheme('dark')}>
+          <Image src="/moon.png" height={30} width={30} alt="sun" />
+        </div>
+      )}
+      {theme === 'dark' && (
+        <div onClick={() => setTheme('light')}>
+          <Image src="/sun_icon.png" height={30} width={30} alt="moon" />
+        </div>
+      )}
     </div>
   )
 }
 
 export default ThemeSwitcher
-

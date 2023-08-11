@@ -23,6 +23,7 @@
     "jsdom": "^22.1.0",
     "langchain": "^0.0.114",
     "next": "13.4.6",
+    "next-themes": "^0.2.1",
     "postcss": "8.4.24",
     "react": "18.2.0",
     "react-autosave": "^0.4.2",
