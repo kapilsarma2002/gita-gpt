@@ -22,7 +22,7 @@ const HomeLayout = async ({ children }: any) => {
         </ul>
       </aside> */}
       <div className="h-full">
-        <header className="h-[60px] border-b border-black/5 flex flex-row items-center justify-between dark:border-white/30">
+        <header className="h-[60px] border-b border-black/5 flex flex-row items-center justify-between dark:border-white/20">
           <div className="pl-6">Logo</div>
           <div>
             <NavBar />

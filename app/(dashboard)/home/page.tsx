@@ -23,10 +23,16 @@ const Home = async () => {
   console.log(last)
 
   return (
-    <div className="bg-white text-black h-full w-full p-4
+    <div
+      className="bg-white text-black h-full w-full p-12
       dark:bg-slate-900 dark:text-white/80
-    ">
-      {last == -1 ? <HomeCard text={startText} /> : <HomeCard text={continueText} />}
+    "
+    >
+      {last == -1 ? (
+        <HomeCard text={startText} />
+      ) : (
+        <HomeCard text={continueText} />
+      )}
     </div>
   )
 }
