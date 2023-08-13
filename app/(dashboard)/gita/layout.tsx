@@ -1,6 +1,7 @@
 const GitaLayout = ({children}) => {
+
   return (
-    <div className="p-12">
+    <div className="h-full w-full p-12">
       Gita Here we go! : {children}
     </div>
   )
