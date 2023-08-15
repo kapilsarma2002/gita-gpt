@@ -16,10 +16,13 @@ const GitaPage = () => {
   if (error) return <div>Failed to load</div>
   //Handle the loading state
   if (!data) return <div>Loading...</div>
-  console.log(data.chapters['AdhyayDetails'])
+  const chapters = data.chapters.AdhyayDetails || []
+  console.log('chapters : ', data[0])
   return (
     <div className="h-full w-full border border-black/10">
-      Gita Page : {data.chapters}
+      Gita Page :<div>{chapters.map((chapter) => {
+        {chapter.CHAPTER}
+      })}</div>
     </div>
   )
 }
