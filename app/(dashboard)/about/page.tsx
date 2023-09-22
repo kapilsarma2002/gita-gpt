@@ -1,8 +1,32 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react'
 
 const AboutPage = () => {
   return (
-    <div className="container mx-auto p-4 md:p-8 lg:p-12">
+    <div className="container mx-auto p-4 md:p-8 lg:p-12 h-full w-full overflow-y-auto">
+      <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
+        Bhagavad Gita - A Summary
+      </h1>
+      <p className="text-base md:text-lg lg:text-xl mb-4">
+        The Bhagavad Gita, often referred to as the Gita, is a 700-verse Hindu
+        scripture that is part of the Indian epic Mahabharata. It consists of a
+        conversation between Prince Arjuna and the Bhagawan Krishna, who serves as
+        his charioteer.
+      </p>
+      <p className="text-base md:text-lg lg:text-xl mb-4">
+        The Gita is a profound philosophical and spiritual text that addresses
+        the moral and ethical dilemmas faced by Arjuna on the battlefield of
+        Kurukshetra. It explores key concepts such as duty (dharma),
+        righteousness, devotion (bhakti), and the paths to spiritual
+        realization.
+      </p>
+      <p className="text-base md:text-lg lg:text-xl">
+        The teachings of the Bhagavad Gita have had a profound influence on
+        Hindu philosophy and have been embraced by people of various spiritual
+        traditions worldwide. It offers guidance on how to live a life of
+        purpose, virtue, and inner peace.
+      </p>
+      <br />
       <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
         About Bhagavad Gita App
       </h2>

@@ -1,28 +1,36 @@
 'use client'
 
-//useSWR allows the use of SWR inside function components
-import useSWR from 'swr'
-
-//Write a fetcher function to wrap the native fetch function and return the result of a call to url in json format
-const fetcher = (url) => fetch(url).then((res) => res.json())
+import React from 'react'
+import chapters from '@/utils/chapters'
 
 const GitaPage = () => {
-
-  //Set up SWR to run the fetcher function when calling "/api/chapters"
-  //There are 3 possible states: (1) loading when data is null (2) ready when the data is returned (3) error when there was an error fetching the data
-  const { data, error } = useSWR('/api/chapters', fetcher)
-
-  //Handle the error state
-  if (error) return <div>Failed to load</div>
-  //Handle the loading state
-  if (!data) return <div>Loading...</div>
-  const chapters = data.chapters.AdhyayDetails || []
-  console.log('chapters : ', data[0])
   return (
-    <div className="h-full w-full border border-black/10">
-      Gita Page :<div>{chapters.map((chapter) => {
-        {chapter.CHAPTER}
-      })}</div>
+    <div className="container mx-auto p-4">
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {chapters.AdhyayDetails.map((chapter) => (
+          <div
+            key={chapter.CHAPTER}
+            className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md transition duration-300 ease-in-out hover:bg-blue-100 dark:hover:bg-blue-700"
+          >
+            <h2 className="text-xl font-semibold mb-2">
+              {chapter.CHAPTER}. {chapter['ADHYAY NAME']}
+            </h2>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              No. of Shlokas: {chapter['NO. OF SHLOKAS']}
+            </p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Krishna: {chapter['KRISHNA']}
+            </p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Arjun: {chapter['ARJUN']}
+            </p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Sanjay: {chapter['SANJAY']}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
