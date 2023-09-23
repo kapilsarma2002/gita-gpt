@@ -2,6 +2,7 @@
 
 import React from 'react'
 import chapters from '@/utils/chapters'
+import Link from 'next/link'
 
 const GitaPage = () => {
   return (
@@ -9,10 +10,11 @@ const GitaPage = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {chapters.AdhyayDetails.map((chapter) => (
-          <div
-            key={chapter.CHAPTER}
+          <Link href={`/gita/chapter/${chapter.CHAPTER}`}
+            key={chapter.CHAPTER}>
+            <div
             className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md transition duration-300 ease-in-out hover:bg-blue-100 dark:hover:bg-blue-700"
-          >
+            >
             <h2 className="text-xl font-semibold mb-2">
               {chapter.CHAPTER}. {chapter['ADHYAY NAME']}
             </h2>
@@ -29,6 +31,7 @@ const GitaPage = () => {
               Sanjay: {chapter['SANJAY']}
             </p>
           </div>
+          </Link>
         ))}
       </div>
     </div>

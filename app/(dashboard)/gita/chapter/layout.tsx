@@ -1,5 +1,5 @@
 const ChapterLayout = ({ children }) => {
-  return <div>Chapter : {children}</div>
+  return <div>{children}</div>
 }
 
 export default ChapterLayout
