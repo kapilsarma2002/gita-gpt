@@ -8,16 +8,20 @@ const links = [
   { href: '/home', label: 'Home' },
   { href: '/gita', label: 'Gita' },
   { href: '/bookmarks', label: 'Bookmarks' },
-  { href: '/profile', label: 'Profile'},
+  { href: '/', label: 'Profile'},
   { href: '/about', label: 'About' },
 ]
 
-const NavBar = () => {
+const NavBar = ({user}) => {
   const [showDropdown, setShowDropdown] = useState(false)
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown)
   }
+
+  const userProfile = links[3]
+  userProfile.href = `/profile/${user.userName}`
+
 
   return (
     <div className="relative flex justify-between">

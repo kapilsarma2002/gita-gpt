@@ -11,7 +11,7 @@ const HomeLayout = async ({ children }: any) => {
   return (
     <div className="h-screen w-screen relative bg-white text-black dark:bg-slate-900 dark:text-white/80">
       <div className="h-full w-full pt-4">
-            <NavBar />       
+            <NavBar user = {user} />       
         <div className="h-[calc(100vh-60px)] lg:h-[calc(100vh-80px)]">
           {children}
         </div>
