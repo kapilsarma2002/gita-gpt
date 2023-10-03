@@ -35,7 +35,7 @@ const NavBar = ({user}) => {
         >☰ Menu
         </button>
       </div>
-      <div className="hidden lg:flex lg:flex-row gap-2 lg:gap-4 lg:text-xl px-3 py-2 text-base lg:text-black/70 dark:text-white/80">
+      <div className="hidden lg:flex lg:flex-row gap-2 lg:gap-4 lg:text-xl px-3 pb-2 text-base lg:text-black/70 dark:text-white/80">
         {links.map((link) => (
           <Link href={link.href} key={link.label}>
             <div className="hover:text-black/100 dark:hover:text-white/100 transition duration-150 ease-out hover:ease-in">
@@ -44,7 +44,7 @@ const NavBar = ({user}) => {
           </Link>
         ))}
       </div>
-      <div className="lg:flex items-center gap-4 px-6">
+      <div className="lg:flex items-center gap-4 px-6 pb-4">
         <div className="text-lg lg:text-xl">
           <ThemeSwitcher />
         </div>
