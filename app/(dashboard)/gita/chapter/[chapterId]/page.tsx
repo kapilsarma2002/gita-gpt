@@ -3,12 +3,7 @@ import Link from 'next/link'
 
 const Chapter = ({ params }) => {
   const chapterId = params.chapterId
-  let slicingIndex
-  if (chapterId.length == 2) {
-    slicingIndex = 9
-  } else {
-    slicingIndex = 8
-  }
+  const slicingIndex = chapterId.length === 2 ? 9 : 8;
 
   // Filter verses for the selected chapter
   const chapterVerses = verses['Bhagavad-Gita'].filter(
@@ -30,7 +25,7 @@ const Chapter = ({ params }) => {
             )}`}
             key={verse['S.No.']}
           >
-            <div className="bg-gray-100 dark:bg-slate-900/50 p-4 mb-4 shadow-md dark:shadow-md dark:shadow-slate-600 transition duration-300 ease-in-out hover:bg-blue-100 dark:hover:bg-blue-700 rounded-lg">
+            <div className="bg-gray-100 dark:bg-slate-800 p-4 mb-4 shadow-sm dark:shadow-md dark:shadow-slate-600 transition duration-300 ease-in-out hover:bg-blue-100 dark:hover:bg-blue-700 rounded-lg">
               <p className="text-lg">{verse.Verse.slice(slicingIndex)}</p>
               <p className="text-gray-800 dark:text-gray-200 lg:text-2xl md:text-2xl sm:text-xl text-center">{verse['Sanskrit Anuvad']}</p>
               {/* <p>{verse['Hindi Anuvad']}</p>

@@ -1,7 +1,7 @@
 const VerseLayout = ({children}) => {
   return (
     <div>
-      Verse : {children}
+      {children}
     </div>
   )
 }
