@@ -7,8 +7,25 @@ const VerseComponent = ({ verse }) => {
   return (
     <div className="h-full">
       {verse ? (
-        <div className="mb-4 rounded-lg bg-gray-100 dark:bg-gray-800 text-center h-full w-full px-8">
-          <div className="flex justify-center pt-4">
+        <div className="mb-4 rounded-lg bg-gray-100 dark:bg-gray-800 text-center h-full w-full px-8 flex flex-col justify-center items-center">
+          <div className="flex flex-col h-[50%] justify-center items-center">
+            {/* Sanskrit Anuvad */}
+            <p className="lg:text-3xl md:text-2xl sm:text-xl">
+              {verse['Sanskrit Anuvad'].split(' । ').map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index < verse['Sanskrit Anuvad'].split(' । ').length - 1 ? (
+                    <span>
+                      {' '}
+                      । <br />
+                    </span>
+                  ) : null}
+                </span>
+              ))}
+            </p>
+          </div>
+          {/* Toggle buttons */}
+          <div className="flex justify-center mt-4">
             <button
               className={`${
                 currentTranslation === 'Hindi'
@@ -30,27 +47,17 @@ const VerseComponent = ({ verse }) => {
               English Translation
             </button>
           </div>
-          <p className="lg:text-3xl md:text-2xl sm:text-xl justify-center items-center p-12">
-            {verse['Sanskrit Anuvad'].split(' । ').map((line, index) => (
-              <span key={index}>
-                {line}
-                {index < verse['Sanskrit Anuvad'].split(' । ').length - 1 ? (
-                  <span>
-                    {' '}
-                    । <br />
-                  </span>
-                ) : null}
-              </span>
-            ))}
-          </p>
-          <p className="text-gray-500 dark:text-gray-400 lg:text-2xl md:text-xl sm:text-lg">
-            {currentTranslation === 'Hindi' ? verse['Hindi Anuvad'] : null}
-          </p>
-          <p className="text-gray-500 dark:text-gray-400 lg:text-xl md:text-xl sm:text-lg">
-            {currentTranslation === 'English'
-              ? verse['English Translation']
-              : null}
-          </p>
+          <div className="flex flex-col h-[50%] justify-center items-center">
+            {/* Translation */}
+            <p className="text-gray-500 dark:text-gray-400 lg:text-2xl md:text-xl sm:text-lg">
+              {currentTranslation === 'Hindi' ? verse['Hindi Anuvad'] : null}
+            </p>
+            <p className="text-gray-500 dark:text-gray-400 lg:text-xl md:text-xl sm:text-lg">
+              {currentTranslation === 'English'
+                ? verse['English Translation']
+                : null}
+            </p>
+          </div>
         </div>
       ) : (
         <p className="text-center text-red-500 dark:text-red-400">
