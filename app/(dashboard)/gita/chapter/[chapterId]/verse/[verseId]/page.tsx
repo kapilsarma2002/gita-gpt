@@ -1,5 +1,6 @@
 import React from 'react'
 import verses from '@/utils/verses'
+import VerseComponent from '@/components/verseComponent'
 
 const Verse = ({ params }) => {
   const verseId = params.verseId
@@ -13,51 +14,24 @@ const Verse = ({ params }) => {
   )
 
   return (
-    <div className="bg-white dark:bg-slate-900 text-black dark:text-white h-screen w-screen flex flex-col">
-      <header className="h-[70px] bg-gray-200 dark:bg-gray-800 py-4 px-8 text-center">
+    <div className="bg-white dark:bg-slate-900 text-black dark:text-white h-[calc(100vh-80px)] w-screen fixed flex flex-col">
+      <header className="bg-gray-200 dark:bg-gray-800 py-4 px-8 text-center">
         <h1 className="text-3xl">
           Chapter {chapterId} Verse {verseId}
         </h1>
       </header>
       <main className="h-[calc(100vh - 120px)] w-full container mx-auto py-8 flex-grow flex">
-        <div className="h-full w-50% p-4">
-          {verse ? (
-            <div className="mb-4 rounded-lg bg-gray-100 flex flex-col dark:bg-gray-800 text-center h-full w-full">
-              <p className="lg:text-3xl md:text-2xl sm:text-xl justify-center items-center p-12">
-                {verse['Sanskrit Anuvad'].split(' । ').map((line, index) => (
-                  <span key={index}>
-                    {line}
-                    {index <
-                    verse['Sanskrit Anuvad'].split(' । ').length - 1 ? (
-                      <span>
-                        {' '}
-                        । <br />
-                      </span>
-                    ) : null}
-                  </span>
-                ))}
-              </p>
-              <p className="text-gray-500 dark:text-gray-400 lg:text-2xl md:text-xl sm:text-lg">
-                {verse['Hindi Anuvad']}
-              </p>
-              <p className="text-gray-500 dark:text-gray-400 lg:text-xl md:text-xl sm:text-lg">
-                {verse['English Translation']}
-              </p>
-            </div>
-          ) : (
-            <p className="text-center text-red-500 dark:text-red-400">
-              Verse not found
-            </p>
-          )}
+        <div className="h-full w-[60%] p-4">
+          <VerseComponent verse={verse} />
         </div>
-        <div className="w-50% p-4 flex flex-col justify-between">
+        <div className="w-[40%] p-4 flex flex-col justify-between">
           <textarea
-            className="w-full h-1/2 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 p-2 rounded-lg mb-4"
-            placeholder="Top Text Area"
+            className="w-full h-1/3 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 p-2 rounded-lg mb-4"
+            placeholder="Ask your question here"
           ></textarea>
           <textarea
-            className="w-full h-1/2 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 p-2 rounded-lg"
-            placeholder="Bottom Text Area"
+            className="w-full h-2/3 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 p-2 rounded-lg"
+            placeholder="AI says..."
           ></textarea>
         </div>
       </main>
