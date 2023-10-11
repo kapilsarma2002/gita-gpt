@@ -2,14 +2,34 @@
 import React, { useState } from 'react'
 
 const VerseComponent = ({ verse }) => {
-  const [currentTranslation, setCurrentTranslation] = useState('Hindi') // Default to Hindi
+  const [currentTranslation, setCurrentTranslation] = useState('Hindi')
+  const [isCompleted, setIsCompleted] = useState(false)
+
+  const toggleCompletion = () => {
+    setIsCompleted(!isCompleted)
+  }
+
+  const getTooltipText = () => {
+    return isCompleted ? 'Mark as new' : 'Mark as done'
+  }
 
   return (
-    <div className="h-full">
+    <div className="h-full relative bg-gray-100 dark:bg-gray-800 rounded-lg">
+      <span className="tooltip-text text-black dark:text-white absolute top-4 left-4 text-opacity-0 hover:text-opacity-100 dark:text-opacity-0 dark:hover:text-opacity-100">
+        <div
+          className={`${
+            isCompleted
+              ? 'bg-green-500 dark:bg-green-300'
+              : 'bg-gray-500 dark:bg-gray-400'
+          } w-6 h-6 rounded-full cursor-pointer relative transition duration-300 ease-in-out`}
+          onClick={toggleCompletion}
+        >
+          <div className="left-8 w-40 text-center">{getTooltipText()}</div>
+        </div>
+      </span>
       {verse ? (
-        <div className="mb-4 rounded-lg bg-gray-100 dark:bg-gray-800 text-center h-full w-full px-8 flex flex-col justify-center items-center">
+        <div className="mb-4 text-center h-full w-full px-8 flex flex-col justify-center items-center">
           <div className="flex flex-col h-[50%] justify-center items-center">
-            {/* Sanskrit Anuvad */}
             <p className="lg:text-3xl md:text-2xl sm:text-xl">
               {verse['Sanskrit Anuvad'].split(' । ').map((line, index) => (
                 <span key={index}>
@@ -24,7 +44,6 @@ const VerseComponent = ({ verse }) => {
               ))}
             </p>
           </div>
-          {/* Toggle buttons */}
           <div className="flex justify-center mt-4">
             <button
               className={`${
@@ -34,7 +53,7 @@ const VerseComponent = ({ verse }) => {
               } px-4 py-2 rounded-lg mr-4 transition duration-300 ease-in-out hover:bg-gray-300 hover:text-gray-800 dark:hover:bg-gray-600 dark:hover:text-gray-300`}
               onClick={() => setCurrentTranslation('Hindi')}
             >
-              Hindi Anuvad
+              Hindi
             </button>
             <button
               className={`${
@@ -44,11 +63,10 @@ const VerseComponent = ({ verse }) => {
               } px-4 py-2 rounded-lg transition duration-300 ease-in-out hover:bg-gray-300 hover:text-gray-800 dark:hover:bg-gray-600 dark:hover:text-gray-300`}
               onClick={() => setCurrentTranslation('English')}
             >
-              English Translation
+              English
             </button>
           </div>
           <div className="flex flex-col h-[50%] justify-center items-center">
-            {/* Translation */}
             <p className="text-gray-500 dark:text-gray-400 lg:text-2xl md:text-xl sm:text-lg">
               {currentTranslation === 'Hindi' ? verse['Hindi Anuvad'] : null}
             </p>
