@@ -1,11 +1,16 @@
 'use client'
 import React, { useState } from 'react'
+import { toggleVerseStatus } from '@/utils/api'
 
-const VerseComponent = ({ verse }) => {
+const VerseComponent = ({ verse, verseId, chapterId }) => {
   const [currentTranslation, setCurrentTranslation] = useState('Hindi')
+  
+
+
   const [isCompleted, setIsCompleted] = useState(false)
 
-  const toggleCompletion = () => {
+  const toggleCompletion = async () => {
+    await toggleVerseStatus(!isCompleted, verseId, chapterId)
     setIsCompleted(!isCompleted)
   }
 

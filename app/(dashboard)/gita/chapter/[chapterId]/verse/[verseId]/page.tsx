@@ -22,7 +22,7 @@ const Verse = ({ params }) => {
       </header>
       <main className="h-[calc(100vh - 120px)] w-full container mx-auto py-8 flex-grow flex">
         <div className="h-full w-[60%] p-4">
-          <VerseComponent verse={verse} />
+          <VerseComponent verse={verse} verseId = {verseId} chapterId = {chapterId} />
         </div>
         <div className="w-[40%] p-4 flex flex-col justify-between">
           <textarea
