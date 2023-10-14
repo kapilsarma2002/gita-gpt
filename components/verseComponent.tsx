@@ -2,25 +2,25 @@
 import React, { useEffect, useState } from 'react'
 import {getStatus, toggleVerseStatus } from '@/utils/api'
 
-let status: boolean = false
-
 const VerseComponent = async ({ verse, verseId, chapterId }) => {
+  const [isCompleted, setIsCompleted] = useState(false)
   const [currentTranslation, setCurrentTranslation] = useState('Hindi')
+  
   useEffect(() => {
     const fetchStatus = async () => {
       const { data } = await getStatus(verseId, chapterId);
-      status = data.isCompleted
-      console.log('status is : ', status)
+      setIsCompleted(data.isCompleted)
+      // status = data.isCompleted
+      // console.log('status is : ', status)
     }
     fetchStatus()
-  }, [verseId, chapterId])
+  }, [isCompleted])
 
 
-  const [isCompleted, setIsCompleted] = useState(status)
 
   const toggleCompletion = async () => {
-    await toggleVerseStatus(!isCompleted, verseId, chapterId)
     setIsCompleted(!isCompleted)
+    await toggleVerseStatus(!isCompleted, verseId, chapterId)
   }
 
   const getTooltipText = () => {
