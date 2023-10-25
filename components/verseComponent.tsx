@@ -4,17 +4,23 @@ import { getStatus, toggleVerseStatus } from '@/utils/api'
 import { analyze } from '@/utils/ai'
 
 const VerseComponent = async ({ verse, verseId, chapterId }) => {
-  const [isCompleted, setIsCompleted] = useState(false)
+  const [isCompleted, setIsCompleted] = useState(null)
   const [currentTranslation, setCurrentTranslation] = useState('Hindi')
 
   useEffect(() => {
     const fetchStatus = async () => {
-      const { data } = await getStatus(verseId, chapterId, isCompleted)
-      setIsCompleted(data.isCompleted)
-      // status = data.isCompleted
-      // console.log('status is : ', status)
+      try {
+        const { data } = await getStatus(verseId, chapterId)
+        setIsCompleted(data.isCompleted)
+      } catch (error) {
+        console.error('Error fetching status:', error)
+        setIsCompleted(false) // Set to a default value in case of an error
+      }
     }
-    fetchStatus()
+
+    if (isCompleted === null) {
+      fetchStatus() // Fetch status only on the initial render
+    }
   }, [isCompleted])
 
   //console.log(analyze('hello hi my name is kapil'))

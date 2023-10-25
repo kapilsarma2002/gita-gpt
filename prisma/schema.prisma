@@ -25,11 +25,11 @@ model User {
 }
 
 model Verse {
-  userId      String  @id
+  userId      String
   verseId     Int
   chapterId   Int
   isCompleted Boolean
   user        User    @relation(fields: [userId], references: [id])
 
-  @@index([userId])
+  @@unique([userId, verseId, chapterId])
 }

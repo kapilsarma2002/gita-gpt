@@ -2,7 +2,7 @@ const createURL = (path) => {
   return window.location.origin + path
 }
 
-export const getStatus = async (verseId, chapterId, isCompleted) => {
+export const getStatus = async (verseId, chapterId) => {
   const res = await fetch(
     new Request(createURL(`/api/chapter/${chapterId}/verse/${verseId}`)),
     {
@@ -12,9 +12,9 @@ export const getStatus = async (verseId, chapterId, isCompleted) => {
   if (res.ok) {
     const data = await res.json()
     console.log('res is : ', data)
-    if (data.data) return data
+    if (data) return data
   }
-  await toggleVerseStatus(isCompleted, verseId, chapterId)
+  //return toggleVerseStatus(isCompleted, verseId, chapterId)
 }
 
 export const toggleVerseStatus = async (isCompleted, verseId, chapterId) => {
@@ -24,7 +24,7 @@ export const toggleVerseStatus = async (isCompleted, verseId, chapterId) => {
   })
   if (res.ok) {
     const data = await res.json()
-    console.log('PATCH reponse is : ', data)
-    return data
+    console.log('PATCH reponse is : ', data.data)
+    return data.data
   }
 }
