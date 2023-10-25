@@ -1,14 +1,15 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import {getStatus, toggleVerseStatus } from '@/utils/api'
+import { getStatus, toggleVerseStatus } from '@/utils/api'
+import { analyze } from '@/utils/ai'
 
 const VerseComponent = async ({ verse, verseId, chapterId }) => {
   const [isCompleted, setIsCompleted] = useState(false)
   const [currentTranslation, setCurrentTranslation] = useState('Hindi')
-  
+
   useEffect(() => {
     const fetchStatus = async () => {
-      const { data } = await getStatus(verseId, chapterId);
+      const { data } = await getStatus(verseId, chapterId, isCompleted)
       setIsCompleted(data.isCompleted)
       // status = data.isCompleted
       // console.log('status is : ', status)
@@ -16,11 +17,11 @@ const VerseComponent = async ({ verse, verseId, chapterId }) => {
     fetchStatus()
   }, [isCompleted])
 
-
+  //console.log(analyze('hello hi my name is kapil'))
 
   const toggleCompletion = async () => {
-    setIsCompleted(!isCompleted)
     await toggleVerseStatus(!isCompleted, verseId, chapterId)
+    setIsCompleted(!isCompleted)
   }
 
   const getTooltipText = () => {

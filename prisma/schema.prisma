@@ -28,7 +28,7 @@ model Verse {
   userId      String  @id
   verseId     Int
   chapterId   Int
-  isCompleted Boolean @default(false)
+  isCompleted Boolean
   user        User    @relation(fields: [userId], references: [id])
 
   @@index([userId])

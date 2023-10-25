@@ -1,4 +1,4 @@
-import { OpenAI } from 'langchain/llms/openai'
+import { OpenAI } from 'openai'
 import { StructuredOutputParser } from 'langchain/output_parsers'
 import { PromptTemplate } from 'langchain/prompts'
 import { Document } from 'langchain/document'
@@ -6,13 +6,15 @@ import { loadQARefineChain } from 'langchain/chains'
 import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
 import { MemoryVectorStore } from 'langchain/vectorstores/memory'
 import z from 'zod'
+const apiKey = process.env.OPENAI_API_KEY
+//console.log('API Key is : ', apiKey)
 
 const parser = StructuredOutputParser.fromZodSchema(
   z.object({
     ques: z
       .string()
       .describe('the question of the person who is reading the verse.'),
-    ans: z.string().describe('the answer to the question asked by the user.')
+    ans: z.string().describe('the answer to the question asked by the user.'),
     /*negative: z
       .boolean()
       .describe(
@@ -50,14 +52,32 @@ const getPrompt = async (content) => {
 }
 
 export const analyze = async (content) => {
-  const input = await getPrompt(content)
-  const model = new OpenAI({ temperature: 0, modelName: 'gpt-3.5-turbo' })
-  const result = await model.call(input)
-  //console.log(result)
+  //const input = await getPrompt(content)
+  const openai = new OpenAI({
+    apiKey: apiKey,
+    dangerouslyAllowBrowser: true,
+  })
+  const result = await openai.chat.completions.create({
+    model: 'gpt-3.5-turbo',
+    messages: [
+      {
+        role: 'system',
+        content: 
+          'You are an AI assitant, answer the questions to the best of your ability.'
+      },
+      {
+        role: 'user',
+        content: `${content}`
+      }
+    ]
+  })
 
-  try {
+  //const result = await openai.call(content)
+  console.log('Result is : ', result)
+
+  /*try {
     return parser.parse(result)
   } catch (e) {
     console.log(e)
-  }
+  }*/
 }

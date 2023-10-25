@@ -20,7 +20,7 @@ const Home = async () => {
   const startText = 'Get started'
   const continueText = `Verse ${last}, continue reading`
 
-  console.log(last)
+  //console.log(last)
 
   return (
     <div
