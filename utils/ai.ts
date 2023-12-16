@@ -6,8 +6,8 @@ import { loadQARefineChain } from 'langchain/chains'
 import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
 import { MemoryVectorStore } from 'langchain/vectorstores/memory'
 import z from 'zod'
-const apiKey = process.env.OPENAI_API_KEY
-//console.log('API Key is : ', apiKey)
+
+const API = process.env.OPENAI_API_KEY
 
 const parser = StructuredOutputParser.fromZodSchema(
   z.object({
@@ -51,11 +51,11 @@ const getPrompt = async (content) => {
   return input
 }
 
-export const analyze = async (content) => {
+export const analyze = async (verse, content) => {
   //const input = await getPrompt(content)
   const openai = new OpenAI({
-    apiKey: apiKey,
-    dangerouslyAllowBrowser: true,
+    apiKey: API,
+    dangerouslyAllowBrowser: true
   })
   const result = await openai.chat.completions.create({
     model: 'gpt-3.5-turbo',
@@ -73,7 +73,8 @@ export const analyze = async (content) => {
   })
 
   //const result = await openai.call(content)
-  console.log('Result is : ', result)
+  // console.log('Result is : ', result)
+  return result
 
   /*try {
     return parser.parse(result)
