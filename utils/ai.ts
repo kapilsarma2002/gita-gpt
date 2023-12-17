@@ -14,23 +14,25 @@ const parser = StructuredOutputParser.fromZodSchema(
     ques: z
       .string()
       .describe('the question of the person who is reading the verse.'),
-    ans: z.string().describe('the answer to the question asked by the user.'),
-    /*negative: z
+    ans: z
+      .string()
+      .describe('the answer to the question asked by the user.'),
+    negative: z
       .boolean()
       .describe(
-        'is the journal entry negative? (i.e. does it contain negative emotions?).'
+        'is the verse negative? (i.e. does it contain negative emotions?).'
       ),
-    summary: z.string().describe('quick summary of the entire entry.'),
+    /*summary: z.string().describe('quick summary of the entire entry.'),
     color: z
       .string()
       .describe(
         'a hexidecimal color code the represents the mood of the entry. Example #0101fe for blue representing happiness.'
-      ),
+      ),*/
     sentimentScore: z
       .number()
       .describe(
-        'sentiment of the text and rated on a scale from -10 to 10, where -10 is extremely negative, 0 is neutral, and 10 is extremely positive.'
-      ),*/
+        'emotion of the verse and rated on a scale from -10 to 10, where -10 is extremely negative emotion, 0 is neutral, and 10 is extremely positive emotion.'
+      ),
   })
 )
 
@@ -72,7 +74,6 @@ export const analyze = async (verse, content) => {
     ]
   })
 
-  //const result = await openai.call(content)
   // console.log('Result is : ', result)
   return result
 
