@@ -2,6 +2,20 @@ const createURL = (path) => {
   return window.location.origin + path
 }
 
+export const getCompletedVerses = async () => {
+  const res = await fetch(
+    new Request(createURL(`/api/home`)),
+    {
+      method: 'GET',
+    }
+  )
+  if (res.ok) {
+    const data = await res.json()
+    console.log('GET completed verses : ', data)
+    return data
+  }
+}
+
 export const getStatus = async (verseId, chapterId) => {
   const res = await fetch(
     new Request(createURL(`/api/chapter/${chapterId}/verse/${verseId}`)),

@@ -6,6 +6,18 @@ export const PATCH = async (request, { params }) => {
   const user = await getUserByClerkID()
   const { isCompleted } = await request.json()
 
+  if(isCompleted) {
+    await prisma.user.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        last: +params.verseId,
+      },
+    })
+  }
+
+
   const data = await prisma.verse.upsert({
     where: {
       userId_verseId_chapterId: {

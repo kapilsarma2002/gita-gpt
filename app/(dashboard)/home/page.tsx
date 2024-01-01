@@ -1,6 +1,8 @@
 import HomeCard from '@/components/homeCard'
+import { getCompletedVerses } from '@/utils/api'
 import { getUserByClerkID } from '@/utils/auth'
 import { prisma } from '@/utils/db'
+import ProgressComponent from '@/components/progressComponent'
 
 const getStatus = async () => {
   const user = await getUserByClerkID()
@@ -33,6 +35,10 @@ const Home = async () => {
       ) : (
         <HomeCard text={continueText} />
       )}
+
+      <div>
+        <ProgressComponent />
+      </div>
     </div>
   )
 }
