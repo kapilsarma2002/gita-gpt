@@ -4,10 +4,11 @@ import { getStatus, toggleVerseStatus } from '@/utils/api'
 import { analyze } from '@/utils/ai'
 
 const VerseComponent = ({ verse, verseId, chapterId }) => {
-  const [isCompleted, setIsCompleted] = useState(null)
+  const [isCompleted, setIsCompleted] = useState(false)
   const [currentTranslation, setCurrentTranslation] = useState('Hindi')
 
   useEffect(() => {
+    console.log('Inside useEffect')
     const fetchStatus = async () => {
       try {
         const { data } = await getStatus(verseId, chapterId)
@@ -20,7 +21,7 @@ const VerseComponent = ({ verse, verseId, chapterId }) => {
     }
 
     fetchStatus()
-  }, [])
+  }, [verseId, chapterId])
 
   const toggleCompletion = async () => {
     try {
@@ -95,12 +96,27 @@ const VerseComponent = ({ verse, verseId, chapterId }) => {
               </p>
             )}
           </div>
-          <input
-            type="checkbox"
-            value={isCompleted || ''}
-            checked={isCompleted}
-            onChange={toggleCompletion}
-          />
+          <label className="flex items-center cursor-pointer mt-4 pb-8">
+            <span className="relative">
+              <input
+                type="checkbox"
+                checked={isCompleted || false}
+                onChange={toggleCompletion}
+                className="sr-only"
+              />
+              <span className="block bg-gray-200 dark:bg-gray-700 w-10 h-6 rounded-full shadow-inner"></span>
+              <span
+                className={`${
+                  isCompleted
+                    ? 'translate-x-4 bg-green-500 dark:bg-green-300'
+                    : 'translate-x-0 bg-gray-500 dark:bg-gray-400'
+                } absolute block m-1 w-4 h-4 rounded-full shadow inset-y-0 left-0 transition-transform duration-300 ease-in-out`}
+              ></span>
+            </span>
+            <span className="ml-3 text-gray-700 dark:text-gray-300">
+              Mark as {isCompleted ? 'new' : 'done'}
+            </span>
+          </label>
         </div>
       ) : (
         <p className="text-center text-red-500 dark:text-red-400">
