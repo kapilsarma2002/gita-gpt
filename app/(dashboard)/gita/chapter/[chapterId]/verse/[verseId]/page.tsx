@@ -56,7 +56,7 @@ const Verse = ({ params }) => {
             placeholder="Ask your question here"
             onBlur={handleBlur}
           ></textarea>
-          <div className="relative left-0 top-0 bg-gray-100 dark:bg-gray-800 text-black dark:text-gray-400 pt-2 pl-2 rounded-t-lg">
+          <div className="relative left-0 top-0 bg-gray-100 dark:bg-gray-800 text-black dark:text-gray-400 py-2 pl-2 rounded-t-lg">
             {isFetching ? (
               <Spinner />
             ) : (
@@ -64,7 +64,7 @@ const Verse = ({ params }) => {
             )}
           </div>
           <textarea
-            className="w-full h-2/3 bg-gray-100 dark:bg-gray-800 text-black dark:text-gray-400 p-4 rounded-b-lg"
+            className="w-full h-2/3 bg-gray-100 dark:bg-gray-800 text-black dark:text-gray-400 p-4"
             placeholder="AI says..."
             value={answer}
             onChange={(e) => setAnswer(e.target.value)}

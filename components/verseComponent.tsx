@@ -4,23 +4,36 @@ import { getStatus, toggleVerseStatus } from '@/utils/api'
 import { analyze } from '@/utils/ai'
 
 const VerseComponent = ({ verse, verseId, chapterId }) => {
-  //const [isCompleted, setIsCompleted] = useState(null)
+  const [isCompleted, setIsCompleted] = useState(null)
   const [currentTranslation, setCurrentTranslation] = useState('Hindi')
 
-  // useEffect(() => {
-  //   const fetchStatus = async () => {
-  //     try {
-  //       const { data } = await getStatus(verseId, chapterId)
-  //       setIsCompleted(data.isCompleted)
-  //     } catch (error) {
-  //       console.error('Error fetching status:', error)
-  //       setIsCompleted(false) // Set to a default value in case of an error
-  //     }
-  //   }
+  useEffect(() => {
+    const fetchStatus = async () => {
+      try {
+        const { data } = await getStatus(verseId, chapterId)
+        console.log('Data on initial load is:', data)
+        setIsCompleted(data.isCompleted)
+      } catch (error) {
+        console.error('Error fetching status:', error)
+        setIsCompleted(false) // Set to a default value in case of an error
+      }
+    }
 
-  //   fetchStatus()
+    fetchStatus()
+  }, [])
 
-  // }, [verseId, chapterId])
+  const toggleCompletion = async () => {
+    try {
+      const updatedStatus = !isCompleted
+      await toggleVerseStatus(updatedStatus, verseId, chapterId)
+      setIsCompleted(updatedStatus) // Update isCompleted locally
+      // Fetch the updated status
+      const { data } = await getStatus(verseId, chapterId)
+      setIsCompleted(data.isCompleted)
+    } catch (error) {
+      console.error('Error toggling completion:', error)
+    }
+  }
 
   useEffect(() => {
     setCurrentTranslation('Hindi')
@@ -30,36 +43,8 @@ const VerseComponent = ({ verse, verseId, chapterId }) => {
     setCurrentTranslation(language)
   }
 
-  //console.log(analyze('hello hi my name is kapil'))
-
-  // const toggleCompletion = useCallback(async () => {
-  //   try {
-  //     const updatedStatus = !isCompleted
-  //     await toggleVerseStatus(updatedStatus, verseId, chapterId)
-  //     setIsCompleted((prevIsCompleted) => !prevIsCompleted)
-  //   } catch (error) {
-  //     console.error('Error toggling completion:', error)
-  //   }
-  // }, [isCompleted, verseId, chapterId])
-
-  // const getTooltipText = () => {
-  //   return isCompleted ? 'Mark as new' : 'Mark as done'
-  // }
-
   return (
     <div className="h-full relative bg-gray-100 dark:bg-gray-800 rounded-lg">
-      {/* <span className="tooltip-text text-black dark:text-white absolute top-4 left-4 text-opacity-0 hover:text-opacity-100 dark:text-opacity-0 dark:hover:text-opacity-100">
-        <div
-          className={`${
-            isCompleted
-              ? 'bg-green-500 dark:bg-green-300'
-              : 'bg-gray-500 dark:bg-gray-400'
-          } w-6 h-6 rounded-full cursor-pointer relative transition duration-300 ease-in-out`}
-          onClick={toggleCompletion}
-        >
-          <div className="left-8 w-40 text-center">{getTooltipText()}</div>
-        </div>
-      </span> */}
       {verse ? (
         <div className="mb-4 text-center h-full w-full px-8 flex flex-col justify-center items-center">
           <div className="flex flex-col h-[50%] justify-center items-center">
@@ -110,6 +95,12 @@ const VerseComponent = ({ verse, verseId, chapterId }) => {
               </p>
             )}
           </div>
+          <input
+            type="checkbox"
+            value={isCompleted || ''}
+            checked={isCompleted}
+            onChange={toggleCompletion}
+          />
         </div>
       ) : (
         <p className="text-center text-red-500 dark:text-red-400">
