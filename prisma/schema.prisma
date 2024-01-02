@@ -18,7 +18,8 @@ model User {
   isPro         Boolean  @default(false)
   accuracy      Float    @default(0.0)
   completed     Int      @default(0)
-  last          Int      @default(-1)
+  lastChapter   Int      @default(-1)
+  lastVerse     Int      @default(-1)
   dailyStreak   Int      @default(0)
   longestStreak Int      @default(0)
   verses        Verse[]

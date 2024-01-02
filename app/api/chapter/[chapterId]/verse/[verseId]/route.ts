@@ -12,7 +12,8 @@ export const PATCH = async (request, { params }) => {
         id: user.id,
       },
       data: {
-        last: +params.verseId,
+        lastChapter: +params.chapterId,
+        lastVerse: +params.verseId,
       },
     })
   }

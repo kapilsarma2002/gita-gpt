@@ -17,8 +17,7 @@ const ProgressComponent = () => {
 
   return (
     <div>
-      PROGRESS : {Math.floor((count / 700) * 100)}
-      <div style={{ width: 200, height: 200 }}>
+      <div style={{ width: 300, height: 300 }}>
         <CircularProgressbar
           value={Math.floor((count / 700) * 100)}
           text={`${count} / 700`}

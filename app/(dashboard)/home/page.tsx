@@ -11,30 +11,40 @@ const getStatus = async () => {
       id: user.id,
     },
     select: {
-      last: true,
+      lastChapter: true,
+      lastVerse: true,
     },
   })
   return status
 }
 
 const Home = async () => {
-  const { last } = await getStatus()
+  const { lastChapter, lastVerse } = await getStatus()
   const startText = 'Get started'
-  const continueText = `Verse ${last}, continue reading`
+  const continueText = `Chapter ${lastChapter} Verse ${lastVerse}, continue reading`
 
   //console.log(last)
 
   return (
     <div
       className="bg-white text-black h-full w-full p-12
-      dark:bg-slate-900 dark:text-white/80
-    "
+      dark:bg-slate-900 dark:text-white/80 flex flex-row items-center justify-around border border-black"
     >
-      {last == -1 ? (
-        <HomeCard text={startText} />
-      ) : (
-        <HomeCard text={continueText} />
-      )}
+      <div>
+        {lastVerse == -1 || lastChapter == -1 ? (
+          <HomeCard
+            text={startText}
+            verseId={lastVerse}
+            chapterId={lastChapter}
+          />
+        ) : (
+          <HomeCard
+            text={continueText}
+            verseId={lastVerse}
+            chapterId={lastChapter}
+          />
+        )}
+      </div>
 
       <div>
         <ProgressComponent />
