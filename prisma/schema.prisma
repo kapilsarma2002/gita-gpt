@@ -26,11 +26,12 @@ model User {
 }
 
 model Verse {
-  userId      String
-  verseId     Int
-  chapterId   Int
-  isCompleted Boolean
-  user        User    @relation(fields: [userId], references: [id])
+  userId         String
+  verseId        Int
+  chapterId      Int
+  isCompleted    Boolean
+  completionDate DateTime @default(now())
+  user           User     @relation(fields: [userId], references: [id])
 
   @@unique([userId, verseId, chapterId])
 }

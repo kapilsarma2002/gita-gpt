@@ -28,7 +28,7 @@ const Home = async () => {
   return (
     <div
       className="bg-white text-black h-full w-full p-12
-      dark:bg-slate-900 dark:text-white/80 flex flex-row items-center justify-around border border-black"
+      dark:bg-slate-900 dark:text-white/80 flex flex-row items-center justify-around"
     >
       <div>
         {lastVerse == -1 || lastChapter == -1 ? (
