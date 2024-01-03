@@ -31,7 +31,7 @@ const Home = async () => {
       dark:bg-slate-900 dark:text-white/80 flex flex-row items-center justify-around"
     >
       <div>
-        {lastVerse == -1 || lastChapter == -1 ? (
+        {(lastVerse == -1 || lastChapter == -1) ? (
           <HomeCard
             text={startText}
             verseId={lastVerse}
