@@ -22,19 +22,25 @@ const getStatus = async () => {
 
 const getRandomVerse = () => {
   const chapters = Object.keys(random_chapters)
+  const randomChapterIndex = Math.ceil(Math.random() * chapters.length)
+  const selectedChapter = chapters[randomChapterIndex-1]
+  // console.log(randomChapterIndex)
+  // console.log(selectedChapter)
 
-  const randomChapterIndex = Math.floor(Math.random() * chapters.length)
-  const selectedChapter = chapters[randomChapterIndex]
 
   const totalVerses = random_chapters[selectedChapter]
 
-  const randomVerseNumber = Math.floor(Math.random() * totalVerses) + 1
+  const randomVerseNumber = Math.ceil(Math.random() * totalVerses)
+  const randomVerse = `Verse ${randomChapterIndex}.${randomVerseNumber}`
+  // console.log(randomVerse)
 
-  // const verse = verses.filter()
+  const chapter = verses[selectedChapter].filter(verse => verse.Verse == randomVerse)
+  // console.log(verses[selectedChapter])
+  // console.log(chapter[0]['English Translation'])
 
   return {
-    chapter: selectedChapter,
-    verseNumber: randomVerseNumber,
+    verseNo : randomVerse,
+    verse :  chapter[0]['English Translation']
   }
 }
 
@@ -51,7 +57,7 @@ const Home = async () => {
       className="bg-white text-black h-full w-full p-12
       dark:bg-slate-900 dark:text-white/80 flex flex-row items-center justify-around"
     >
-      <div className="flex flex-col items-center justify-around h-full">
+      <div className="w-4/5 flex flex-col items-left justify-around h-full">
         {/* last verse read */}
         <div>
           {lastVerse == -1 || lastChapter == -1 ? (
@@ -70,12 +76,13 @@ const Home = async () => {
         </div>
 
         {/* daily verse */}
-        <div>
-          <h1>daily verse</h1>
+        <div className="w-95% mx-auto">
+          <h1 className="text-2xl">{randomVerse.verseNo}</h1>
+          <h2 className="text-lg">{randomVerse.verse}</h2>
         </div>
       </div>
 
-      <div>
+      <div className="hidden sm:block lg:w-1/5">
         <ProgressComponent />
       </div>
     </div>
