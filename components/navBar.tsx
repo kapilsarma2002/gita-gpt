@@ -19,6 +19,8 @@ const NavBar = ({user}) => {
     setShowDropdown(!showDropdown)
   }
 
+  console.log(user)
+
   const userProfile = links[3]
   userProfile.href = `/profile/${user.userName}`
 
@@ -56,7 +58,7 @@ const NavBar = ({user}) => {
         <div className="lg:hidden absolute top-full left-0 w-full bg-white border border-black/5 z-10">
           {links.map((link) => (
             <Link href={link.href} key={link.label}>
-              <div className="px-3 py-2 hover:bg-gray-200 dark:hover:bg-gray-700">
+              <div className="px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-900">
                 {link.label}
               </div>
             </Link>
