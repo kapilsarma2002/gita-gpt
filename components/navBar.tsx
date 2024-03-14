@@ -8,11 +8,11 @@ const links = [
   { href: '/home', label: 'Home' },
   { href: '/gita', label: 'Gita' },
   { href: '/bookmarks', label: 'Bookmarks' },
-  { href: '/profile', label: 'Profile'},
+  { href: '/profile', label: 'Profile' },
   { href: '/about', label: 'About' },
 ]
 
-const NavBar = ({user}) => {
+const NavBar = ({ user }) => {
   const [showDropdown, setShowDropdown] = useState(false)
 
   const toggleDropdown = () => {
@@ -24,7 +24,6 @@ const NavBar = ({user}) => {
   const userProfile = links[3]
   userProfile.href = `/profile/${user.userName}`
 
-
   return (
     <div className="relative flex justify-between">
       <div className="lg:flex items-center gap-4 px-6">
@@ -34,13 +33,14 @@ const NavBar = ({user}) => {
         <button
           onClick={toggleDropdown}
           className="text-xl text-black/80 dark:text-white/80"
-        >☰ Menu
+        >
+          ☰ Menu
         </button>
       </div>
       <div className="hidden lg:flex lg:flex-row gap-2 lg:gap-4 lg:text-xl px-3 pb-2 text-base lg:text-black/70 dark:text-white/80">
         {links.map((link) => (
           <Link href={link.href} key={link.label}>
-            <div className="hover:text-black/100 dark:hover:text-white/100 transition duration-150 ease-out hover:ease-in">
+            <div className="pb-1 transition-all duration-200 ease-in-out border-b-2 border-transparent hover:border-current hover:font-bold">
               {link.label}
             </div>
           </Link>
