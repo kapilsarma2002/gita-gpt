@@ -30,6 +30,7 @@
     "next-themes": "^0.2.1",
     "openai": "^4.13.0",
     "postcss": "8.4.24",
+    "prisma": "^5.11.0",
     "react": "^18.2.0",
     "react-autosave": "^0.4.2",
     "react-circular-progressbar": "^2.1.0",
