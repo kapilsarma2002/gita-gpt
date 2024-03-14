@@ -25,11 +25,11 @@ model User {
 }
 
 model Verse {
+  verseId        Int @id
   userId         String
-  verseId        Int
   chapterId      Int
   isCompleted    Boolean
-  isBookmarked   Boolean
+  isBookmarked   Boolean @default(false)
   completionDate DateTime @default(now())
   user           User     @relation(fields: [userId], references: [id])
 

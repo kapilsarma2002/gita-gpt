@@ -57,7 +57,7 @@ const Home = async () => {
       className="bg-white text-black h-full w-full p-12
       dark:bg-slate-900 dark:text-white/80 flex flex-row items-center justify-around"
     >
-      <div className="w-4/5 flex flex-col items-left justify-around h-full">
+      <div className="w-4/5 flex flex-col items-left pl-16 justify-around h-full">
         {/* last verse read */}
         <div>
           {lastVerse == -1 || lastChapter == -1 ? (
