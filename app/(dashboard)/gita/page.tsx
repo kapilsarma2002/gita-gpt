@@ -11,7 +11,7 @@ const GitaPage = () => {
         {chapters.AdhyayDetails.map((chapter) => (
           <Link href={`/gita/chapter/${chapter.CHAPTER}`} key={chapter.CHAPTER}>
             <div className="bg-white dark:bg-slate-900 rounded-lg p-4 shadow-md dark:shadow-slate-600 transition duration-300 ease-in-out hover:bg-blue-100 dark:hover:bg-blue-700 dark:text-white">
-              <h2 className="text-xl font-semibold mb-2">
+              <h2 className="text-xl text-black dark:text-white font-semi-bold mb-2">
                 {chapter.CHAPTER}. {chapter['ADHYAY NAME']}
               </h2>
               <p className="text-sm text-gray-600 dark:text-gray-400">

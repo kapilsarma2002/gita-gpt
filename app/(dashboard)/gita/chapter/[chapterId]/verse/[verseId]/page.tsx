@@ -18,8 +18,8 @@ const Verse = ({ params }) => {
       verse.Verse.slice(slicingIndex) === verseId
   )
 
-  const analyzeQuery =  async(query) => {
-    if(query) {
+  const analyzeQuery = async (query) => {
+    if (query) {
       console.log('User asked : ', query)
       setIsFetching(true)
       const res = await analyze(verse, query)
@@ -34,15 +34,14 @@ const Verse = ({ params }) => {
     analyzeQuery(text) // Analyze the text content
   }
 
-
   return (
     <div className="bg-white dark:bg-slate-900 text-black dark:text-white h-[calc(100vh-80px)] w-screen fixed flex flex-col">
-      <header className="bg-gray-200 dark:bg-gray-800 py-4 px-8 text-center">
+      <header className="py-4 px-8 text-center">
         <h1 className="text-3xl">
           Chapter {chapterId} Verse {verseId}
         </h1>
       </header>
-      <main className="h-[calc(100vh - 120px)] w-full container mx-auto py-8 flex-grow flex">
+      <main className="h-[calc(100vh - 120px)] w-full container mx-auto pb-4 flex-grow flex">
         <div className="h-full w-[60%] p-4">
           <VerseComponent
             verse={verse}
@@ -60,7 +59,7 @@ const Verse = ({ params }) => {
             {isFetching ? (
               <Spinner />
             ) : (
-              <div className="w-[16px] h-[16px] rounded-full bg-green-500"></div>
+              <div className="w-[16px] h-[16px] rounded-full bg-green-500 dark:bg-green-300"></div>
             )}
           </div>
           <textarea

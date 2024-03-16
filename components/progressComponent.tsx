@@ -16,7 +16,10 @@ const ProgressComponent = () => {
   }, [])
 
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center gap-8">
+      <div className="text-3xl text-gray-600 dark:text-white/80">
+        Progress tracker
+      </div>
       <div style={{ width: 300, height: 300 }}>
         <CircularProgressbar
           strokeWidth={5}
@@ -24,6 +27,8 @@ const ProgressComponent = () => {
           text={`${count} / 700`}
           styles={buildStyles({
             textSize: '15px',
+            textColor: '#2196F3',
+            pathColor: '#2196F3',
           })}
         />
       </div>

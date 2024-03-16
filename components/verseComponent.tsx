@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState } from 'react'
 import { getStatus, toggleVerseStatus } from '@/utils/api'
 import { analyze } from '@/utils/ai'
 

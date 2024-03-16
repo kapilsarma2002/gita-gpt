@@ -23,10 +23,9 @@ const getStatus = async () => {
 const getRandomVerse = () => {
   const chapters = Object.keys(random_chapters)
   const randomChapterIndex = Math.ceil(Math.random() * chapters.length)
-  const selectedChapter = chapters[randomChapterIndex-1]
+  const selectedChapter = chapters[randomChapterIndex - 1]
   // console.log(randomChapterIndex)
   // console.log(selectedChapter)
-
 
   const totalVerses = random_chapters[selectedChapter]
 
@@ -34,13 +33,15 @@ const getRandomVerse = () => {
   const randomVerse = `Verse ${randomChapterIndex}.${randomVerseNumber}`
   // console.log(randomVerse)
 
-  const chapter = verses[selectedChapter].filter(verse => verse.Verse == randomVerse)
+  const chapter = verses[selectedChapter].filter(
+    (verse) => verse.Verse == randomVerse
+  )
   // console.log(verses[selectedChapter])
   // console.log(chapter[0]['English Translation'])
 
   return {
-    verseNo : randomVerse,
-    verse :  chapter[0]['English Translation']
+    verseNo: randomVerse,
+    verse: chapter[0]['English Translation'],
   }
 }
 
@@ -57,7 +58,7 @@ const Home = async () => {
       className="bg-white text-black h-full w-full p-12
       dark:bg-slate-900 dark:text-white/80 flex flex-row items-center justify-around"
     >
-      <div className="w-4/5 flex flex-col items-left pl-16 justify-around h-full">
+      <div className="w-2/3 flex flex-col items-left pl-16 justify-around h-full">
         {/* last verse read */}
         <div>
           {lastVerse == -1 || lastChapter == -1 ? (
@@ -77,12 +78,19 @@ const Home = async () => {
 
         {/* daily verse */}
         <div className="w-95% mx-auto">
-          <h1 className="text-2xl">{randomVerse.verseNo}</h1>
-          <h2 className="text-lg">{randomVerse.verse}</h2>
+          <div className="text-3xl mb-4 font-semi-bold text-black dark:text-white">
+            Random verse
+          </div>
+          <h1 className="text-2xl text-gray-800 dark:text-white/80">
+            {randomVerse.verseNo}
+          </h1>
+          <h2 className="text-lg text-gray-700 dark:text-gray-200">
+            {randomVerse.verse}
+          </h2>
         </div>
       </div>
 
-      <div className="hidden sm:block lg:w-1/5">
+      <div className="hidden sm:block lg:w-1/3">
         <ProgressComponent />
       </div>
     </div>

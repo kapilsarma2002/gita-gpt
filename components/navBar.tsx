@@ -37,10 +37,10 @@ const NavBar = ({ user }) => {
           ☰ Menu
         </button>
       </div>
-      <div className="hidden lg:flex lg:flex-row gap-2 lg:gap-4 lg:text-xl px-3 pb-2 text-base lg:text-black/70 dark:text-white/80">
+      <div className="hidden lg:flex lg:flex-row gap-2 lg:gap-5 lg:text-xl px-3 pb-2 text-base lg:text-black/70 dark:text-white/80">
         {links.map((link) => (
           <Link href={link.href} key={link.label}>
-            <div className="pb-1 transition-all duration-200 ease-in-out border-b-2 border-transparent hover:border-current hover:font-bold">
+            <div className="pb-1 transition-all duration-200 ease-in-out border-b-2 border-transparent hover:border-blue-500 hover:font-bold">
               {link.label}
             </div>
           </Link>
