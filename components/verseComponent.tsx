@@ -1,10 +1,12 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { getStatus, toggleVerseStatus } from '@/utils/api'
+import { FaRegBookmark, FaBookmark } from 'react-icons/fa'
 import { analyze } from '@/utils/ai'
 
 const VerseComponent = ({ verse, verseId, chapterId }) => {
   const [isCompleted, setIsCompleted] = useState(false)
+  const [isBookmarked, setIsBookmarked] = useState(false)
   const [currentTranslation, setCurrentTranslation] = useState('Hindi')
 
   useEffect(() => {
@@ -22,6 +24,10 @@ const VerseComponent = ({ verse, verseId, chapterId }) => {
 
     fetchStatus()
   }, [verseId, chapterId])
+
+  const toggleBookmark = () => {
+    setIsBookmarked(!isBookmarked)
+  }
 
   const toggleCompletion = async () => {
     try {
@@ -46,6 +52,15 @@ const VerseComponent = ({ verse, verseId, chapterId }) => {
 
   return (
     <div className="h-full relative bg-gray-100 dark:bg-gray-800 rounded-lg">
+      <div className="absolute top-4 right-4">
+        <button onClick={toggleBookmark}>
+          {isBookmarked ? (
+            <FaBookmark size={24} />
+          ) : (
+            <FaRegBookmark size={24} />
+          )}
+        </button>
+      </div>
       {verse ? (
         <div className="mb-4 text-center h-full w-full px-8 flex flex-col justify-center items-center">
           <div className="flex flex-col h-[50%] justify-center items-center">
