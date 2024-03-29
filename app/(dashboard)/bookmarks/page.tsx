@@ -1,6 +1,16 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
 
-const BookmarkList = ({ bookmarks }) => {
+const BookmarkList = () => {
+
+  const [bookmarks, setBookmarks] = useState([])
+
+  useEffect(() => {
+    fetch('/api/bookmarks')
+      .then((response) => response.json())
+      .then((data) => setBookmarks(data))
+  }, [])
+
   return (
     <div className="container mx-auto py-6">
       <h1 className="text-3xl font-bold mb-6">Bookmarks</h1>

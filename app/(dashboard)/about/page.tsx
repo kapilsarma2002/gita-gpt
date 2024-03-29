@@ -4,7 +4,7 @@ import React from 'react'
 const AboutPage = () => {
   return (
     <div className="container mx-auto p-4 md:p-8 lg:p-12 h-full w-full overflow-y-auto">
-      <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
+      <h1 className="text-2xl md:text-3xl lg:text-4xl font-semi-bold mb-4">
         Bhagavad Gita - A Summary
       </h1>
       <p className="text-base md:text-lg lg:text-xl mb-4">
@@ -27,7 +27,7 @@ const AboutPage = () => {
         purpose, virtue, and inner peace.
       </p>
       <br />
-      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
+      <h2 className="text-2xl md:text-3xl lg:text-4xl font-semi-bold mb-4">
         About Bhagavad Gita App
       </h2>
       <p className="text-base md:text-lg lg:text-xl mb-4">
@@ -40,7 +40,7 @@ const AboutPage = () => {
         or a seeker, our app aims to make the wisdom of the Bhagavad Gita
         accessible to all.
       </p>
-      <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2">
+      <h2 className="text-xl md:text-2xl lg:text-3xl font-semisemi-bold mb-2">
         Key Features
       </h2>
       <ul className="list-disc pl-4 text-base md:text-lg lg:text-xl mb-4">
@@ -52,7 +52,7 @@ const AboutPage = () => {
           bookmarks.
         </li>
       </ul>
-      <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-2">
+      <h2 className="text-xl md:text-2xl lg:text-3xl font-semisemi-bold mb-2">
         Contact Us
       </h2>
       <p className="text-base md:text-lg lg:text-xl mb-4">

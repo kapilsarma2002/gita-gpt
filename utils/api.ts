@@ -30,6 +30,24 @@ export const getStatus = async (verseId, chapterId) => {
   //return toggleVerseStatus(isCompleted, verseId, chapterId)
 }
 
+export const toggleBookmarkStatus = async (isBookmarked, verseId, chapterId) => {
+  const res = await fetch(
+    new Request(createURL(`/api/chapter/${chapterId}/verse/${verseId}`)),
+    {
+      method: 'PATCH',
+      body: JSON.stringify({ isBookmarked }),
+    }
+  )
+  console.log('res is : ', res)
+  if (res.ok) {
+    const data = await res.json()
+    console.log('PATCH reponse is : ', data.data)
+    return data.data
+  } else {
+    console.log('PATCH lo error ra kukka')
+  }
+}
+
 export const toggleVerseStatus = async (isCompleted, verseId, chapterId) => {
   const res = await fetch(
     new Request(createURL(`/api/chapter/${chapterId}/verse/${verseId}`)),

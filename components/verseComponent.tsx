@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { getStatus, toggleVerseStatus } from '@/utils/api'
+import { getStatus, toggleBookmarkStatus, toggleVerseStatus } from '@/utils/api'
 import { FaRegBookmark, FaBookmark } from 'react-icons/fa'
 import { analyze } from '@/utils/ai'
 
@@ -10,12 +10,13 @@ const VerseComponent = ({ verse, verseId, chapterId }) => {
   const [currentTranslation, setCurrentTranslation] = useState('Hindi')
 
   useEffect(() => {
-    console.log('Inside useEffect')
+    console.log('Rendering VerseComponent', { verseId, chapterId, verse })
     const fetchStatus = async () => {
       try {
         const { data } = await getStatus(verseId, chapterId)
         console.log('Data on initial load is:', data)
         setIsCompleted(data.isCompleted)
+        setIsBookmarked(data.isBookmarked)
       } catch (error) {
         console.error('Error fetching status:', error)
         setIsCompleted(false) // Set to a default value in case of an error
@@ -23,19 +24,21 @@ const VerseComponent = ({ verse, verseId, chapterId }) => {
     }
 
     fetchStatus()
-  }, [verseId, chapterId])
+  }, [])
 
-  const toggleBookmark = () => {
-    setIsBookmarked(!isBookmarked)
+  const toggleBookmark = async () => {
+    try {
+      const data = await toggleBookmarkStatus(!isBookmarked, verseId, chapterId)
+      setIsBookmarked(data.isBookmarked)
+    } catch (error) {
+      console.error('Error toggling bookmark:', error)
+    }
   }
 
   const toggleCompletion = async () => {
     try {
-      const updatedStatus = !isCompleted
-      await toggleVerseStatus(updatedStatus, verseId, chapterId)
-      setIsCompleted(updatedStatus) // Update isCompleted locally
-      // Fetch the updated status
-      const { data } = await getStatus(verseId, chapterId)
+      const data = await toggleVerseStatus(!isCompleted, verseId, chapterId)
+      console.log('Data on completion toggle is:', data)
       setIsCompleted(data.isCompleted)
     } catch (error) {
       console.error('Error toggling completion:', error)
@@ -142,4 +145,4 @@ const VerseComponent = ({ verse, verseId, chapterId }) => {
   )
 }
 
-export default VerseComponent
+export default React.memo(VerseComponent)

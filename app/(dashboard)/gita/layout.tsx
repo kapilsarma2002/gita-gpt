@@ -14,10 +14,15 @@ const GitaLayout = ({ children }) => {
     <div className="h-full w-full overflow-y-auto">
       {isGitaPage ? (
         <div className="flex flex-row items-center justify-center">
-          <h1 className="text-3xl font-semi-bold mb-4 pl-16">Bhagavad Gita</h1>
+          <h1 className="text-3xl font-semi-bold mb-4 pl-16 py-8">
+            Bhagavad Gita
+          </h1>
         </div>
       ) : (
-        <div className="pl-[50px] cursor-pointer" onClick={() => router.back()}>
+        <div
+          className="pl-[180px] cursor-pointer"
+          onClick={() => router.back()}
+        >
           <Image
             src={
               resolvedTheme === 'dark'
@@ -25,7 +30,7 @@ const GitaLayout = ({ children }) => {
                 : '/arrow-left.svg'
             }
             height={32}
-            width={32}
+            width={28}
             alt="back"
           />
         </div>
