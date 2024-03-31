@@ -3,15 +3,23 @@ const createURL = (path) => {
 }
 
 export const getCompletedVerses = async () => {
-  const res = await fetch(
-    new Request(createURL(`/api/home`)),
-    {
-      method: 'GET',
-    }
-  )
+  const res = await fetch(new Request(createURL(`/api/home`)), {
+    method: 'GET',
+  })
   if (res.ok) {
     const data = await res.json()
     console.log('GET completed verses : ', data)
+    return data
+  }
+}
+
+export const getBookmarkedVerses = async () => {
+  const res = await fetch(new Request(createURL(`/api/bookmarks`)), {
+    method: 'GET',
+  })
+  if (res.ok) {
+    const data = await res.json()
+    console.log('GET bookmarked verses : ', data)
     return data
   }
 }
@@ -30,7 +38,11 @@ export const getStatus = async (verseId, chapterId) => {
   //return toggleVerseStatus(isCompleted, verseId, chapterId)
 }
 
-export const toggleBookmarkStatus = async (isBookmarked, verseId, chapterId) => {
+export const toggleBookmarkStatus = async (
+  isBookmarked,
+  verseId,
+  chapterId
+) => {
   const res = await fetch(
     new Request(createURL(`/api/chapter/${chapterId}/verse/${verseId}`)),
     {
