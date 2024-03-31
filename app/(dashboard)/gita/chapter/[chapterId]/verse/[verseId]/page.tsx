@@ -51,7 +51,7 @@ const Verse = ({ params }) => {
         </div>
         <div className="w-[40%] p-4 flex flex-col justify-between">
           <textarea
-            className="w-full h-1/3 bg-gray-100 dark:bg-gray-800 text-black dark:text-gray-400 p-4 rounded-lg mb-4"
+            className="w-full h-1/3 bg-gray-100 dark:bg-gray-800 text-black dark:text-gray-400 p-4 rounded-lg mb-4 resize-none"
             placeholder="Ask your question here"
             onBlur={handleBlur}
           ></textarea>
@@ -63,7 +63,7 @@ const Verse = ({ params }) => {
             )}
           </div>
           <textarea
-            className="w-full h-2/3 bg-gray-100 dark:bg-gray-800 text-black dark:text-gray-400 p-4"
+            className="w-full h-2/3 bg-gray-100 dark:bg-gray-800 text-black dark:text-gray-400 p-4 resize-none"
             placeholder="AI says..."
             value={answer}
             onChange={(e) => setAnswer(e.target.value)}
