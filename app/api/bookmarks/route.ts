@@ -13,6 +13,14 @@ export const GET = async (request, { params }) => {
       chapterId: true,
       verseId: true,
     },
+    orderBy: [
+      {
+        chapterId: 'asc',
+      },
+      {
+        verseId: 'asc',
+      },
+    ],
   })
   if (!data) return NextResponse.json({ data: [] })
   return NextResponse.json({ data })

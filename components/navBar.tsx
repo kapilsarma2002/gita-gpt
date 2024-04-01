@@ -7,6 +7,7 @@ import ThemeSwitcher from '@/components/themeSwitcher'
 const links = [
   { href: '/home', label: 'Home' },
   { href: '/gita', label: 'Gita' },
+  { href: '/chat', label: 'Chat' },
   { href: '/bookmarks', label: 'Bookmarks' },
   { href: '/profile', label: 'Profile' },
   { href: '/about', label: 'About' },
@@ -19,15 +20,13 @@ const NavBar = ({ user }) => {
     setShowDropdown(!showDropdown)
   }
 
-  console.log(user)
-
-  const userProfile = links[3]
+  const userProfile = links.find((link) => link.label === 'Profile')
   userProfile.href = `/profile/${user.userName}`
 
   return (
     <div className="relative flex justify-between">
       <div className="lg:flex items-center gap-4 px-6">
-        <div className="pl-6 lg:pl-8">Logo</div>
+        <div className="pl-6 lg:pl-8">Gita</div>
       </div>
       <div className="lg:hidden px-3 py-2">
         <button
@@ -58,7 +57,7 @@ const NavBar = ({ user }) => {
         <div className="lg:hidden absolute top-full left-0 w-full bg-white border border-black/5 z-10">
           {links.map((link) => (
             <Link href={link.href} key={link.label}>
-              <div className="px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-900">
+              <div className="pl-10 px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-900">
                 {link.label}
               </div>
             </Link>
