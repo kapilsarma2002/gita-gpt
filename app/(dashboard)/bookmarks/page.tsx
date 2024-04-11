@@ -11,13 +11,13 @@ const BookmarkList = () => {
     const fetchBookmarks = async () => {
       try {
         const { data } = await getBookmarkedVerses()
-        console.log('Bookmarked verses on initial load are:', data)
+        // console.log('Bookmarked verses on initial load are:', data)
         const newVerses = new Set()
         data.forEach(({ chapterId, verseId }) => {
           newVerses.add(JSON.stringify({ chapterId, verseId }))
         })
         setVerses(newVerses)
-        console.log(verses)
+        // console.log(verses)
       } catch (error) {
         console.error('Error fetching bookmarks:', error)
       }

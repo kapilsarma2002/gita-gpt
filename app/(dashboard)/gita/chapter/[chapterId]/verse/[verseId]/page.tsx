@@ -20,12 +20,12 @@ const Verse = ({ params }) => {
 
   const analyzeQuery = async (query) => {
     if (query) {
-      console.log('User asked : ', query)
+      // console.log('User asked : ', query)
       setIsFetching(true)
       const res = await analyze(verse, query)
       setAnswer(res.choices[0].message.content)
       setIsFetching(false)
-      console.log('AI says: ', res.choices[0].message.content)
+      // console.log('AI says: ', res.choices[0].message.content)
     }
   }
 

@@ -8,7 +8,7 @@ export const getCompletedVerses = async () => {
   })
   if (res.ok) {
     const data = await res.json()
-    console.log('GET completed verses : ', data)
+    // console.log('GET completed verses : ', data)
     return data
   }
 }
@@ -19,7 +19,7 @@ export const getBookmarkedVerses = async () => {
   })
   if (res.ok) {
     const data = await res.json()
-    console.log('GET bookmarked verses : ', data)
+    // console.log('GET bookmarked verses : ', data)
     return data
   }
 }
@@ -68,13 +68,13 @@ export const toggleBookmarkStatus = async (
       body: JSON.stringify({ isBookmarked }),
     }
   )
-  console.log('res is : ', res)
+  // console.log('res is : ', res)
   if (res.ok) {
     const data = await res.json()
-    console.log('PATCH reponse is : ', data.data)
+    // console.log('PATCH reponse is : ', data.data)
     return data.data
   } else {
-    console.log('PATCH lo error ra kukka')
+    console.log('PATCH error')
   }
 }
 
@@ -86,12 +86,12 @@ export const toggleVerseStatus = async (isCompleted, verseId, chapterId) => {
       body: JSON.stringify({ isCompleted }),
     }
   )
-  console.log('res is : ', res)
+  // console.log('res is : ', res)
   if (res.ok) {
     const data = await res.json()
-    console.log('PATCH reponse is : ', data.data)
+    // console.log('PATCH reponse is : ', data.data)
     return data.data
   } else {
-    console.log('PATCH lo error ra kukka')
+    console.log('PATCH error')
   }
 }

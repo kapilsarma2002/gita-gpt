@@ -10,11 +10,11 @@ const VerseComponent = ({ verse, verseId, chapterId }) => {
   const [currentTranslation, setCurrentTranslation] = useState('Hindi')
 
   useEffect(() => {
-    console.log('Rendering VerseComponent', { verseId, chapterId, verse })
+    // console.log('Rendering VerseComponent', { verseId, chapterId, verse })
     const fetchStatus = async () => {
       try {
         const { data } = await getStatus(verseId, chapterId)
-        console.log('Data on initial load is:', data)
+        // console.log('Data on initial load is:', data)
         setIsCompleted(data.isCompleted)
         setIsBookmarked(data.isBookmarked)
       } catch (error) {
@@ -38,7 +38,7 @@ const VerseComponent = ({ verse, verseId, chapterId }) => {
   const toggleCompletion = async () => {
     try {
       const data = await toggleVerseStatus(!isCompleted, verseId, chapterId)
-      console.log('Data on completion toggle is:', data)
+      // console.log('Data on completion toggle is:', data)
       setIsCompleted(data.isCompleted)
     } catch (error) {
       console.error('Error toggling completion:', error)

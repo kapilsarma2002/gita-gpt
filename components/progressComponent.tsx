@@ -9,7 +9,7 @@ const ProgressComponent = () => {
   useEffect(() => {
     const getVerses = async () => {
       const completedVerses = await getCompletedVerses()
-      console.log('completed verses : ', completedVerses)
+      // console.log('completed verses : ', completedVerses)
       setCount(completedVerses.data)
     }
     getVerses()

@@ -31,12 +31,12 @@ const DailyTracker = () => {
 
       try {
         const res = await getVerseLog(formattedStart, formattedEnd)
-        console.log(res)
+        // console.log(res)
         const formattedData = res.map((item) => ({
           date: item.completionDate,
           count: item.count,
         }))
-        console.log(formattedData)
+        // console.log(formattedData)
         setData(formattedData)
       } catch (error) {
         console.error('Error fetching data:', error)
