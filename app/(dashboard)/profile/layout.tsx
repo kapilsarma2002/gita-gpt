@@ -1,5 +1,5 @@
 const UserProfile = ({children}) => {
-  return <div>User LAYOUT : {children}</div>
+  return <div>{children}</div>
 }
 
 export default UserProfile

@@ -24,6 +24,24 @@ export const getBookmarkedVerses = async () => {
   }
 }
 
+export const getVerseLog = async (startDate, endDate) => {
+  const url = new URL(createURL(`/api/verselog`))
+  url.searchParams.append('startDate', startDate)
+  url.searchParams.append('endDate', endDate)
+
+  const res = await fetch(url, {
+    method: 'GET',
+  })
+
+
+  if (res.ok) {
+    const data = res.json()
+    return data
+  } else {
+    console.log('error in log')
+  }
+}
+
 export const getStatus = async (verseId, chapterId) => {
   const res = await fetch(
     new Request(createURL(`/api/chapter/${chapterId}/verse/${verseId}`)),

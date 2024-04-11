@@ -1,46 +1,76 @@
 'use client'
-import React from 'react'
+import { getVerseLog } from '@/utils/api'
+import React, { useEffect, useState } from 'react'
 import Tooltip from '@uiw/react-tooltip'
 import HeatMap from '@uiw/react-heat-map'
 
-const value = [
-  { date: '2016/01/11', count: 2 },
-  ...[...Array(17)].map((_, idx) => ({
-    date: `2016/01/${idx + 10}`,
-    count: idx,
-  })),
-  ...[...Array(17)].map((_, idx) => ({
-    date: `2016/02/${idx + 10}`,
-    count: idx,
-  })),
-  { date: '2016/04/12', count: 2 },
-  { date: '2016/05/01', count: 5 },
-  { date: '2016/05/02', count: 5 },
-  { date: '2016/05/03', count: 1 },
-  { date: '2016/05/04', count: 11 },
-  { date: '2016/05/08', count: 32 },
-]
-
 const DailyTracker = () => {
+  const [data, setData] = useState([])
+  const [startDate, setStartDate] = useState(new Date().toISOString())
+  const [endDate, setEndDate] = useState(new Date().toISOString())
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const currentDate = new Date()
+      const endOfMonth = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth() + 1,
+        1
+      )
+      const startOfMonthLastYear = new Date(
+        currentDate.getFullYear() - 1,
+        currentDate.getMonth() + 1,
+        2
+      )
+
+      const formattedStart = startOfMonthLastYear.toISOString()
+      const formattedEnd = endOfMonth.toISOString()
+
+      setEndDate(formattedEnd)
+      setStartDate(formattedStart)
+
+      try {
+        const res = await getVerseLog(formattedStart, formattedEnd)
+        console.log(res)
+        const formattedData = res.map((item) => ({
+          date: item.completionDate,
+          count: item.count,
+        }))
+        console.log(formattedData)
+        setData(formattedData)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      }
+    }
+
+    fetchData()
+  }, [])
+
   return (
-    <HeatMap
-      rectSize={20}
-      space={5}
-      value={value}
-      width={1200}
-      height={200}
-      startDate={new Date('2016/01/01')}
-      endDate={new Date('2017/12/31')}
-      rectRender={(props, data) => {
-        // if (!data.count) return <rect {...props} />;
-        console.log(data)
-        return (
-          <Tooltip placement="top" content={`count: ${data.count || 0}`}>
-            <rect {...props} />
-          </Tooltip>
-        )
-      }}
-    />
+    <div className='overflow-y-hidden'>
+      <HeatMap
+        rectSize={20}
+        space={5}
+        value={data}
+        width={1400}
+        height={250}
+        startDate={new Date(startDate)}
+        endDate={new Date(endDate)}
+        rectRender={(props, data) => {
+          if (!data.count) return <rect {...props} />
+          return (
+            <Tooltip
+              placement="top"
+              content={`date : ${data.date}, count: ${data.count || 0}`}
+            >
+              <rect {...props} />
+            </Tooltip>
+          )
+        }}
+      />
+      <div>*This is the count of verses that are completed by the user on that particular day</div>
+    </div>
   )
 }
+
 export default DailyTracker
