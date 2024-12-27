@@ -7,7 +7,7 @@ import ThemeSwitcher from '@/components/themeSwitcher'
 const links = [
   { href: '/home', label: 'Home' },
   { href: '/gita', label: 'Gita' },
-  { href: '/chat', label: 'Chat' },
+  // { href: '/chat', label: 'Chat' },
   { href: '/bookmarks', label: 'Bookmarks' },
   { href: '/profile', label: 'Profile' },
   { href: '/about', label: 'About' },
